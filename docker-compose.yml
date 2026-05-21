@@ -16,7 +16,7 @@ services:
     networks:
       - peerlink-net
     healthcheck:
-      test: ["CMD", "curl", "-f", "https://peerlink-p2p-file-sharing-app.onrender.com"]
+      test: ["CMD", "curl", "-f", "https://peerlink-p2p-file-sharing-app.onrender.com/api/health"]
       interval: 30s
       timeout: 10s
       retries: 5
