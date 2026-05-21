@@ -34,7 +34,7 @@ export function useWebSocket(options: UseWebSocketOptions = {}) {
   const connect = useCallback(() => {
     const wsUrl =
        process.env.NEXT_PUBLIC_WS_URL ||
-         `${window.location.protocol === 'https:' ? 'wss' : 'ws'}://${window.location.host}`;
+           'wss://peerlink-p2p-file-sharing-app.onrender.com';
 
     const ws = new WebSocket(`${wsUrl}/ws/transfer`);
 
