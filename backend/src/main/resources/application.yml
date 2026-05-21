@@ -1,0 +1,20 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: peerlink-backend
+  servlet:
+    multipart:
+      max-file-size: 5GB
+      max-request-size: 5GB
+
+peerlink:
+  session:
+    ttl-minutes: 30
+    max-chunk-size: 65536  # 64KB chunks
+
+logging:
+  level:
+    com.peerlink: DEBUG
+    org.springframework.web.socket: INFO

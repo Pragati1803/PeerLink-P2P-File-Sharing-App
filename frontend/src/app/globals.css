@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Syne:wght@400;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-sans: 'Syne', sans-serif;
+
+  --bg: #0a0e14;
+  --card: #0f1520;
+  --border: #1e2d40;
+  --accent: #00d4ff;
+  --green: #00ff88;
+  --yellow: #ffcc00;
+  --red: #ff4466;
+  --muted: #4a6080;
+  --text: #c8d8e8;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background: var(--bg);
+  color: var(--text);
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Scanline overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 212, 255, 0.015) 2px,
+    rgba(0, 212, 255, 0.015) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Grid background */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+/* Selection */
+::selection { background: rgba(0, 212, 255, 0.3); color: white; }
+
+/* Glow effects */
+.glow-accent { text-shadow: 0 0 20px rgba(0, 212, 255, 0.8); }
+.glow-green { text-shadow: 0 0 20px rgba(0, 255, 136, 0.8); }
+
+.card-glow {
+  box-shadow: 0 0 0 1px var(--border), 0 0 30px rgba(0, 212, 255, 0.05);
+  transition: box-shadow 0.3s ease;
+}
+.card-glow:hover {
+  box-shadow: 0 0 0 1px rgba(0, 212, 255, 0.3), 0 0 40px rgba(0, 212, 255, 0.1);
+}
+
+/* Code blocks */
+.font-mono { font-family: var(--font-mono); }
+
+/* Animate in */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up { animation: fadeUp 0.4s ease-out forwards; }
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.cursor-blink { animation: blink 1s step-end infinite; }
+
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow { animation: spin-slow 3s linear infinite; }
+
+/* Progress bar glow */
+@keyframes progressGlow {
+  0% { box-shadow: 0 0 5px rgba(0, 212, 255, 0.5); }
+  100% { box-shadow: 0 0 20px rgba(0, 212, 255, 1), 0 0 40px rgba(0, 212, 255, 0.5); }
+}
+.progress-bar-fill {
+  animation: progressGlow 1s ease-in-out infinite alternate;
+}
+
+/* Drag active state */
+.drag-active {
+  border-color: var(--accent) !important;
+  background: rgba(0, 212, 255, 0.05) !important;
+  box-shadow: inset 0 0 40px rgba(0, 212, 255, 0.08), 0 0 0 1px var(--accent);
+}
