@@ -25,7 +25,7 @@ USER peerlink
 EXPOSE 8080
 
 HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
-  CMD curl -f http://localhost:8080/api/health || exit 1
+  CMD curl -f https://peerlink-p2p-file-sharing-app.onrender.com/api/health || exit 1
 
 ENTRYPOINT ["java", \
   "-XX:+UseContainerSupport", \
